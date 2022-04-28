@@ -7,7 +7,7 @@ namespace fighters_api.Data
 {
     public class MockFightData : IFightData
     {
-        private static Fighter fighter = new Fighter()
+        private static Fighters fighter = new Fighters()
         {
             id = 0,
             name = "Tadeusz",

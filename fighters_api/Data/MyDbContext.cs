@@ -8,7 +8,7 @@ namespace fighters_api.Data
         {
 
         }
-        public DbSet<Fighter> Fighters { get; set; }
+        public DbSet<Fighters> Fighters { get; set; }
         public DbSet<Fight> Fights { get; set; }
     }
 }

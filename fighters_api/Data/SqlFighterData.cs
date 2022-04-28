@@ -12,7 +12,7 @@ namespace fighters_api.Data
             _fighterContext = fighterContext;
         }
 
-        public Fighter AddFighter(Fighter fighter)
+        public Fighters AddFighter(Fighters fighter)
         {
             fighter.id = 0;
             _fighterContext.Fighters.Add(fighter);
@@ -20,13 +20,13 @@ namespace fighters_api.Data
             return fighter;
         }
 
-        public void DeleteFighter(Fighter fighter)
+        public void DeleteFighter(Fighters fighter)
         {
             _fighterContext.Remove(fighter);
             _fighterContext.SaveChanges();
         }
 
-        public Fighter EditFighter(Fighter fighter)
+        public Fighters EditFighter(Fighters fighter)
         {
             var existingFighter = _fighterContext.Fighters.Find(fighter.id);
             if (existingFighter != null)
@@ -37,13 +37,13 @@ namespace fighters_api.Data
             return fighter;
         }
 
-        public Fighter GetFighter(int id)
+        public Fighters GetFighter(int id)
         {
             var fighter = _fighterContext.Fighters.Find(id);
             return fighter;
         }
 
-        public List<Fighter> GetFighters()
+        public List<Fighters> GetFighters()
         {
             var fighterList = _fighterContext.Fighters.ToList();
             return fighterList;

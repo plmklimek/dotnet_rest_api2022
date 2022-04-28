@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using fighters_api.Data;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace fighters_api.Controllers
 {
+    [EnableCors("Cors")]
+    [ApiController]
     public class FighterController : ControllerBase
     {
         private IFighterData _fighterData;
@@ -40,7 +43,7 @@ namespace fighters_api.Controllers
         // POST api/values
         [HttpPost]
         [Route("api/[controller]")]
-        public IActionResult AddFighter(Fighter fighter)
+        public IActionResult AddFighter(Fighters fighter)
         {
             _fighterData.AddFighter(fighter);
             return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + fighter.id, fighter);
@@ -49,7 +52,7 @@ namespace fighters_api.Controllers
         // PUT api/values/5
         [HttpPut]
         [Route("api/[controller]/{id}")]
-        public IActionResult EditFighter(int id, Fighter fighter)
+        public IActionResult EditFighter(int id, Fighters fighter)
         {
             var existingFighter = _fighterData.GetFighter(id);
             if (existingFighter != null)

@@ -1,10 +1,13 @@
 ﻿using fighters_api.Data;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace fighters_api.Controllers
 {
+    [EnableCors("Cors")]
+    [ApiController]
     public class FightController : ControllerBase
     {
         private IFightData _fightData;

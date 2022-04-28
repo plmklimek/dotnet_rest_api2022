@@ -15,6 +15,7 @@ namespace fighters_api
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -25,9 +26,15 @@ namespace fighters_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             //services.AddDbContext<MyDbContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddCors();
-            services.AddControllersWithViews();
+            services.AddCors(options => options.AddPolicy("Cors",
+                        builder =>
+                        {
+                            builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+             }));
+
+            services.AddControllersWithViews().AddNewtonsoftJson();
             services.AddDbContextPool<FightContext>(option => option.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContextPool<FighterContext>(option => option.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IFightData, SqlFightData>();
@@ -47,10 +54,12 @@ namespace fighters_api
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseCors("Cors");
 
             app.UseAuthorization();
 

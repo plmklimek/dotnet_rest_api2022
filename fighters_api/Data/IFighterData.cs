@@ -5,14 +5,14 @@ namespace fighters_api.Data
 {
     public interface IFighterData
     {
-        List<Fighter> GetFighters();
+        List<Fighters> GetFighters();
 
-        Fighter GetFighter(int id);
+        Fighters GetFighter(int id);
 
-        Fighter AddFighter(Fighter fighter);
+        Fighters AddFighter(Fighters fighter);
 
-        void DeleteFighter(Fighter fighter);
+        void DeleteFighter(Fighters fighter);
 
-        Fighter EditFighter(Fighter fighter);
+        Fighters EditFighter(Fighters fighter);
     }
 }

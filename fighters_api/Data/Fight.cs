@@ -15,8 +15,8 @@ namespace fighters_api.Data
             public int? red_fighterid { get; set; }
 
             [ForeignKey("blue_fighterid")]
-            public Fighter blue_fighter { get; set; }
+            public Fighters blue_fighter { get; set; }
             [ForeignKey("red_fighterid")]
-            public Fighter red_fighter { get; set; }
+            public Fighters red_fighter { get; set; }
     }
 }
