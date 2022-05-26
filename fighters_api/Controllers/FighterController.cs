@@ -58,8 +58,8 @@ namespace fighters_api.Controllers
             if (existingFighter != null)
             {
                 fighter.id = existingFighter.id;
-                _fighterData.EditFighter(fighter);
-                return Ok();
+                var resp = _fighterData.EditFighter(fighter);
+                return Ok(resp);
             }
             return NotFound();
         }

@@ -28,10 +28,12 @@ namespace fighters_api.Data
 
         public Fighters EditFighter(Fighters fighter)
         {
-            var existingFighter = _fighterContext.Fighters.Find(fighter.id);
+            var existingFighter = _fighterContext.Fighters.First(v => v.id == fighter.id);
             if (existingFighter != null)
             {
-                _fighterContext.Fighters.Update(existingFighter);
+                existingFighter.id = fighter.id;
+                existingFighter.name = fighter.name;
+                existingFighter.surname = fighter.surname;
                 _fighterContext.SaveChanges();
             }
             return fighter;

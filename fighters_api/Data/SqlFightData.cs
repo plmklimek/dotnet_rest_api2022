@@ -32,7 +32,10 @@ namespace fighters_api.Data
             var existingFight = _fightContext.Fights.Find(fight.id);
             if(existingFight != null)
             {
-                _fightContext.Fights.Update(existingFight);
+                existingFight.id = fight.id;
+                existingFight.blue_fighterid = fight.blue_fighterid;
+                existingFight.red_fighterid = fight.red_fighterid;
+                existingFight._date = fight._date;
                 _fightContext.SaveChanges();
             }
             return fight;
@@ -46,6 +49,7 @@ namespace fighters_api.Data
 
         public List<Fight> GetFights()
         {
+
             var fightList = _fightContext.Fights.Include(s => s.blue_fighter).Include(s => s.red_fighter).ToList();
             return fightList;
         }
